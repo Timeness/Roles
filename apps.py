@@ -1,5 +1,4 @@
 import asyncio
-from src.ub import userbot_client
 from pyrogram import Client, filters
 from pyrogram.raw.functions.account import ReportPeer
 from pyrogram.raw.types import InputPeerChannel, InputPeerUser, InputReportReasonSpam, InputReportReasonPornography, InputReportReasonViolence, InputReportReasonChildAbuse, InputReportReasonOther, InputReportReasonCopyright, InputReportReasonFake, InputReportReasonGeoIrrelevant, InputReportReasonIllegalDrugs, InputReportReasonPersonalDetails
@@ -12,7 +11,8 @@ api_id = "29400566"
 api_hash = "8fd30dc496aea7c14cf675f59b74ec6f"
 
 # Initialize the bot and userbot clients
-app = Client("reporter_bot", api_id=api_id, api_hash=api_hash, bot_token=BOT_TOKEN)
+#app = Client("reporter_bot", api_id=api_id, api_hash=api_hash, bot_token=BOT_TOKEN)
+app = Client("userbot", api_id=api_id, api_hash=api_hash, session_string=STRING_SESSION)
 
 userbot_connected = False
 is_reporting = False
@@ -73,8 +73,8 @@ async def report_start(client, message):
 
     try:
         # Attempt to join the channel or group
-        await userbot_client.join_chat(target_user)
-        target_entity = await userbot_client.get_chat(target_user)
+        await app.join_chat(target_user)
+        target_entity = await app.get_chat(target_user)
         entity_type = "Channel" if target_entity.type == "channel" else "Group"
         await message.reply(
             f"✅ **Target Details:**\n"
@@ -117,11 +117,11 @@ async def select_report_type(client, callback_query):
 
 @app.on_message(filters.text)
 async def send_reports(client, message):
-    global userbot_client, is_reporting, report_reason, target_user
+    global app, is_reporting, report_reason, target_user
     if not is_reporting and target_user and report_reason:
         is_reporting = True
         try:
-            target_entity = await userbot_client.get_chat(target_user)
+            target_entity = await app.get_chat(target_user)
         except Exception as e:
             await message.reply(f"❌ **Failed to find the target:** {e}")
             is_reporting = False
