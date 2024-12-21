@@ -188,9 +188,7 @@ async def disconnect_userbot(client, message):
         await message.reply(f"❌ **Failed to disconnect:** {e}")
 
 
-def main():
-    app.start()
-    userbot_client.start()
-    print("🤖 Reporter Bot and userbot is running...")
-  
-main()
+
+app.run()
+userbot_client.run()
+print("🤖 Reporter Bot and userbot is running...")
