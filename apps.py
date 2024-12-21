@@ -1,4 +1,5 @@
 import asyncio
+from ub import *
 from pyrogram import Client, filters
 from pyrogram.raw.functions.account import ReportPeer
 from pyrogram.raw.types import InputPeerChannel, InputPeerUser, InputReportReasonSpam, InputReportReasonPornography, InputReportReasonViolence, InputReportReasonChildAbuse, InputReportReasonOther, InputReportReasonCopyright, InputReportReasonFake, InputReportReasonGeoIrrelevant, InputReportReasonIllegalDrugs, InputReportReasonPersonalDetails
@@ -12,7 +13,6 @@ api_hash = "8fd30dc496aea7c14cf675f59b74ec6f"
 
 # Initialize the bot and userbot clients
 app = Client("reporter_bot", api_id=api_id, api_hash=api_hash, bot_token=BOT_TOKEN)
-userbot_client = Client("userbot", api_id=api_id, api_hash=api_hash, session_string=STRING_SESSION)
 
 userbot_connected = False
 is_reporting = False
@@ -191,5 +191,4 @@ async def disconnect_userbot(client, message):
 
 
 app.run()
-userbot_client.run()
-print("🤖 Reporter Bot and userbot is running...")
+print("🤖 Reporter Bot is running...")
