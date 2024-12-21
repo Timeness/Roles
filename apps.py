@@ -192,6 +192,5 @@ async def main():
     await app.start()
     await userbot_client.start()
     print("🤖 Reporter Bot and userbot is running...")
-    await asyncio.Event().wait()
   
-asyncio.run(main())
+await main()
