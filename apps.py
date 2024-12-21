@@ -67,8 +67,9 @@ async def report_start(client, message):
         return
 
     await message.reply("Kindly enter the username or chat ID of the target:")
-    target_user_message = await client.listen(message.chat.id)
-    target_user = target_user_message.text
+    #target_user_message = await client.listen(message.chat.id)
+    #target_user = target_user_message.text
+    target_user = "@koolvouces"
 
     try:
         # Attempt to join the channel or group
