@@ -193,4 +193,4 @@ async def main():
     await userbot_client.start()
     print("🤖 Reporter Bot and userbot is running...")
   
-await main()
+main()
